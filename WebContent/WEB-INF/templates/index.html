@@ -1,0 +1,122 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:replace="~{includes/bootstrapMeta :: bootstrapMeta}" />
+<title>Cocktail Manager</title>
+<div th:replace="~{includes/bootstrapCSS :: bootstrapCSS}" />
+</head>
+<body>
+		<nav th:replace="~{includes/searchNav}"></nav>
+		<div class="brand">Cocktail Lounge</div>
+   		 <div class="address-bar">Carina Coelestin | Nikolaus Hribernig | Patrick Plank</div>
+
+
+<div> ><nav th:replace="~{includes/navigation}"></nav></div>
+
+
+	<div class="container" role="main">
+
+		<div class="header">
+
+		</div>
+
+		<!--  Error message ----------------------------------------------------------- -->
+		<div th:unless="${errorMessage} == null" th:utext="${errorMessage}"
+			class="alert alert-danger" role="alert"></div>
+		<!--  Error message ----------------------------------------------------------- -->
+
+		<!--  Warning message ----------------------------------------------------------- -->
+		<div th:unless="${warningMessage} == null"
+			th:utext="${warningMessage}" class="alert alert-warning"
+			role="warning"></div>
+		<!--  Warning message ----------------------------------------------------------- -->
+
+		<!--   message ----------------------------------------------------------- -->
+		<div th:unless="${message} == null" th:utext="${message}"
+			class="alert alert-success" role="warning"></div>
+		<!--   message ----------------------------------------------------------- -->
+
+		<!--  1 simple button ----------------------------------------------------------- -->
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<p>
+					<a href="fillCocktailList">
+						<button type="button" class="btn btn-success">Fill List</button>
+					</a>
+				</p>
+			</div>
+		</div>
+		<!--  1 simple button ----------------------------------------------------------- -->
+
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+
+				<table data-toggle="table" class="table table-striped">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Name</th>
+							<th>Type</th>
+							<th>Alcohol in %</th>
+						<!--	<th>Main Ingredient</th> -->
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!--  list all items ----------------------------------------------------------- -->
+						<tr th:each="cocktail : ${cocktails}">
+							<td th:text="${cocktail.id}"></td>
+							<td th:text="${cocktail.name}"></td>
+							<td th:text="${cocktail.type.name}"></td>
+							<td th:text="${cocktail.alc}"></td>
+						<!--	<td th:text="${cocktail.ingredients.name}"></td> -->
+							<td><a th:href="@{/delete(id=${cocktail.id})}">Delete</a></td>
+
+						</tr>
+						<!--  list all items ----------------------------------------------------------- -->
+					</tbody>
+				</table>
+
+				<!--  list all Types ----------------------------------------------------------- -->
+
+				<div class="col-md-4 col-md-offset-2">
+					<h1>Types</h1>
+					<div class="tree">
+						<ul>
+							<li th:each="type : ${types}"><a href="#"
+								th:text="${type.name}"> </a>
+								<ul>
+									<li th:each="cocktail : ${type.cocktails}"><a
+										href="#"
+										th:text="${cocktail.name}"> </a></li>
+								</ul></li>
+						</ul>
+					</div>
+				</div>
+
+				<!--  list all Types ----------------------------------------------------------- -->
+
+				<!--  list all ingredients ----------------------------------------------------------- -->
+
+				<div class="col-md-4 col-md-offset-1">
+					<h1>Ingredients</h1>
+					<div class="tree">
+						<ul>
+							<li th:each="ingredient:${ingredients}"><a href="#"
+								th:text="${ingredient.name}"></a>
+								<ul>
+									<li th:each="cocktail:${ingredient.cocktails}"><a href="#"
+										th:text="${cocktail.name}"> </a></li>
+								</ul></li>
+						</ul>
+					</div>
+				</div>
+				<!--  list all ingredients ----------------------------------------------------------- -->
+
+			</div>
+		</div>
+	</div>
+	<!--  End of container -->
+	<div th:replace="~{includes/bootstrapJS :: bootstrapJS}" />
+</body>
+</html>
