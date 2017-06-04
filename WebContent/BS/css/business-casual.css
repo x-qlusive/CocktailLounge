@@ -195,11 +195,14 @@ footer p {
 }
 
 .table-striped>tbody>tr:nth-child(even){
-   background-color:lightblue;
+   background-color:rgba(135,206,250,0.5);
+}
+.table-striped>tbody>tr:nth-child(odd){
+   background-color:rgba(255,255,255,0.5);
 }
 
 .table-striped>thead>tr{
-   background-color:lightblue;
+   background-color:rgba(135,206,250,0.5);
 }
 
 .navbar-search {
