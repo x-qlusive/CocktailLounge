@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import at.fh.swenga.jpa.dao.TypeDao;
 import at.fh.swenga.jpa.dao.CocktailDao;
 import at.fh.swenga.jpa.dao.IngredientDao;
-import at.fh.swenga.jpa.model.Address;
 import at.fh.swenga.jpa.model.Type;
 import at.fh.swenga.jpa.model.CocktailModel;
 import at.fh.swenga.jpa.model.Ingredient;
