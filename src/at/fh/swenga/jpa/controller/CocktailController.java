@@ -1,22 +1,26 @@
 package at.fh.swenga.jpa.controller;
  
-import java.util.Calendar;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import at.fh.swenga.jpa.dao.TypeDao;
 import at.fh.swenga.jpa.dao.CocktailDao;
 import at.fh.swenga.jpa.dao.IngredientDao;
-import at.fh.swenga.jpa.model.Type;
+import at.fh.swenga.jpa.dao.TypeDao;
 import at.fh.swenga.jpa.model.CocktailModel;
 import at.fh.swenga.jpa.model.Ingredient;
+import at.fh.swenga.jpa.model.Type;
  
 @Controller
 public class CocktailController {
@@ -42,6 +46,35 @@ public class CocktailController {
 		model.addAttribute("ingredients",ingredients);
  
 		return "index";
+	}
+	
+	@RequestMapping(value = "/addCocktail", method = RequestMethod.GET)
+	public String showAddCocktailForm(Model model) {
+		return "editCocktail";
+	}
+	
+	@RequestMapping(value = "/addCocktail", method = RequestMethod.POST)	
+	public String addCocktail(@Valid @ModelAttribute CocktailModel newCocktailModel, BindingResult bindingResult,
+			Model model){
+		if (bindingResult.hasErrors()) {
+			String errorMessage = "";
+			for (FieldError fieldError : bindingResult.getFieldErrors()) {
+				errorMessage += fieldError.getField() + " is invalid<br>";
+			}
+			model.addAttribute("errorMessage", errorMessage);
+			return "forward:/list";
+		}
+ 
+		CocktailModel cocktail = cocktailDao.getCocktail(newCocktailModel.getId());
+ 
+		if (cocktail != null) {
+			model.addAttribute("errorMessage", "cocktail already exists!<br>");
+		} else {
+			cocktailDao.persist(newCocktailModel);
+			model.addAttribute("message", "New cocktail " + newCocktailModel.getId() + " added.");
+		}
+ 
+		return "forward:/list";
 	}
  
 	@RequestMapping("/fillCocktailList")
