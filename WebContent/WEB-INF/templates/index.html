@@ -82,7 +82,7 @@
 							<th>Name</th>
 							<th>Type</th>
 							<th>Alcohol in %</th>
-							<!--	<th>Main Ingredient</th> -->
+					<!-- 	<th>Main Ingredient</th> --> 
 							<th>Action</th>
 						</tr>
 					</thead>
@@ -93,7 +93,8 @@
 							<td th:text="${cocktail.name}"></td>
 							<td th:text="${cocktail.type.name}"></td>
 							<td th:text="${cocktail.alc}"></td>
-							<!--	<td th:text="${cocktail.ingredients.name}"></td> -->
+					<!-- 		<td th:text="${cocktail.ingredients[0].name}"></td> -->
+					<!-- 		<td th:each="ingredient:${cocktail.ingredients}"><a href="#" th:text="${ingredient.name}"></a> -->
 							<td><a th:href="@{/delete(id=${cocktail.id})}">Delete</a></td>
 							<td><a th:href="@{/addCocktail(id=${cocktail.id})}">Edit</a></td>
 

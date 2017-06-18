@@ -23,7 +23,7 @@ public class Type {
  
 	private String name;
  
-	@OneToMany(mappedBy="type",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="type",fetch=FetchType.LAZY)
 	@OrderBy("name, alc")
     private Set<CocktailModel> cocktails;
  
