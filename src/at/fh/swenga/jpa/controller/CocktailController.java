@@ -44,7 +44,6 @@ public class CocktailController {
 		model.addAttribute("cocktails", cocktails);
 		model.addAttribute("types", types);
 		model.addAttribute("ingredients",ingredients);
- 
 		return "index";
 	}
 	

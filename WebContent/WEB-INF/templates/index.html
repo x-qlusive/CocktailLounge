@@ -95,6 +95,7 @@
 							<td th:text="${cocktail.alc}"></td>
 							<!--	<td th:text="${cocktail.ingredients.name}"></td> -->
 							<td><a th:href="@{/delete(id=${cocktail.id})}">Delete</a></td>
+							<td><a th:href="@{/addCocktail(id=${cocktail.id})}">Edit</a></td>
 
 						</tr>
 						<!--  list all items ----------------------------------------------------------- -->
