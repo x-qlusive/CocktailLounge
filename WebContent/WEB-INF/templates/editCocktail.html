@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<div th:replace="~{includes/bootstrapMeta :: bootstrapMeta}" />
+<title>Cocktail Lounge</title>
+<div th:replace="~{includes/bootstrapCSS :: bootstrapCSS}" />
+<link
+	href="http://www.malot.fr/bootstrap-datetimepicker/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css"
+	rel="stylesheet">
+</head>
+<body>
+	<div class="container" role="main">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<form class="form-horizontal" method="post" th:action="${cocktail} ? @{/editCocktail(id=${cocktail.id})} : @{addCocktail}">
+					<fieldset>
+						<legend th:text="${cocktail}? 'Change Cocktail' : 'New Cocktail'">New Cocktail</legend>
+
+						<!--  ----------------  ssn ---------------- -->
+						<div class="form-group">
+							<label for="inputID" class="col-md-2 control-label">ID</label>
+							<div class="col-md-10">
+								<input class="form-control" id="inputID" type="text" name="id" th:value="${cocktail} ? ${cocktail.id}" th:readonly="${cocktail != null}">
+							</div>
+						</div>
+
+						<!-- --------------  first Name ---------------- -->
+						<div class="form-group">
+							<label for="inputName" class="col-md-2 control-label">Name</label>
+							<div class="col-md-10">
+								<input class="form-control" id="inputName" type="text"
+									name="name" th:value="${cocktail} ? ${cocktail.name}">
+							</div>
+						</div>
+						<!-- --------------  last Name ---------------- -->
+						<div class="form-group">
+							<label for="inputType" class="col-md-2 control-label">Type</label>
+							<div class="col-md-10">
+								<input class="form-control" id="inputType" type="text"
+									name="type" th:value="${cocktail} ? ${cocktail.type}">
+							</div>
+						</div>
+
+						<!-- --------------  dayOfBirth ---------------- -->
+						<div class="form-group">
+							<label for="inputAlc" class="col-md-2 control-label">Alcohol in %</label>
+							<div class="col-md-10">
+								<input class="form-control" id="inputAlc" type="text"
+									name="alc" th:value="${cocktail} ? ${cocktail.alc}">
+							</div>
+						</div>
+
+
+						<!-- --------------  buttons ---------------- -->
+						<div class="form-group">
+							<div class="col-md-10 col-md-offset-2">
+								<button type="submit" class="btn btn-primary">Submit</button>
+								<a href="listCocktails">
+									<button type="button" class="btn btn-default">Cancel</button>
+								</a>
+							</div>
+						</div>
+
+					</fieldset>
+				</form>
+			</div>
+		</div>
+
+	</div>
+	<!--  End of container -->
+
+
+	<div th:replace="~{includes/bootstrapJS :: bootstrapJS}" />
+
+	<!-- JS for Datetime picker -->
+
+</body>
+</html>
