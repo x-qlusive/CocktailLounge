@@ -17,7 +17,7 @@ public class Ingredient {
  
 	private String name;
  
-	@ManyToMany(mappedBy = "ingredients",fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy = "ingredients",fetch=FetchType.LAZY)
 	private List<CocktailModel> cocktails;
  
 	public Ingredient() {

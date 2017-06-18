@@ -95,6 +95,7 @@
 							<td th:text="${cocktail.alc}"></td>
 					<!-- 		<td th:text="${cocktail.ingredients[0].name}"></td> -->
 					<!-- 		<td th:each="ingredient:${cocktail.ingredients}"><a href="#" th:text="${ingredient.name}"></a> -->
+					<!--     <td th:text="${#lists.size(cocktail.ingredients)}"></td> --> 
 							<td><a th:href="@{/delete(id=${cocktail.id})}">Delete</a></td>
 							<td><a th:href="@{/addCocktail(id=${cocktail.id})}">Edit</a></td>
 
