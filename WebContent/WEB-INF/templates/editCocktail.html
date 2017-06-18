@@ -18,15 +18,16 @@
 					<fieldset>
 						<legend th:text="${cocktail}? 'Change Cocktail' : 'New Cocktail'">New Cocktail</legend>
 
-						<!--  ----------------  ssn ---------------- -->
+						<!--  ----------------  ID ---------------- -
 						<div class="form-group">
 							<label for="inputID" class="col-md-2 control-label">ID</label>
 							<div class="col-md-10">
 								<input class="form-control" id="inputID" type="text" name="id" th:value="${cocktail} ? ${cocktail.id}" th:readonly="${cocktail != null}">
 							</div>
 						</div>
+						-->
 
-						<!-- --------------  first Name ---------------- -->
+						<!-- --------------  Name ---------------- -->
 						<div class="form-group">
 							<label for="inputName" class="col-md-2 control-label">Name</label>
 							<div class="col-md-10">
@@ -34,7 +35,18 @@
 									name="name" th:value="${cocktail} ? ${cocktail.name}">
 							</div>
 						</div>
-						<!-- --------------  last Name ---------------- -->
+						
+			 									<!-- --------------  Zutaten ---------------- -->
+
+						<div class="form-group">
+							<label for="inputAlc" class="col-md-2 control-label">Zutaten</label>
+							<div class="col-md-10">
+								<input class="form-control" id="inputIng" type="text"
+									name="ingredient" th:value="${cocktail} ? ${cocktail.ingredients}">
+							</div>
+						</div>
+			
+						<!-- --------------  Type ---------------- -->
 						<div class="form-group">
 							<label for="inputType" class="col-md-2 control-label">Type</label>
 							<div class="col-md-10">
@@ -43,7 +55,7 @@
 							</div>
 						</div>
 
-						<!-- --------------  dayOfBirth ---------------- -->
+						<!-- --------------  Alcoholgehalt ---------------- -->
 						<div class="form-group">
 							<label for="inputAlc" class="col-md-2 control-label">Alcohol in %</label>
 							<div class="col-md-10">
