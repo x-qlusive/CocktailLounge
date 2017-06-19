@@ -21,6 +21,3 @@ https://guides.github.com/features/mastering-markdown/
 https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 You can upload this file as part of a commit/push or you can create it online in GitHub.
 
-There is also an online editor with preview available. 
-
-Click on the README.md file in your GitHub project view:
