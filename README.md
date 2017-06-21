@@ -44,7 +44,6 @@ https://guides.github.com/features/mastering-markdown/
 https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 You can upload this file as part of a commit/push or you can create it online in GitHub.
 
-mehr pushen -weniger brunchen
 
 ## Prerequisites
 To create our Website we worked with Thymeleaf Version 3.0.3, Spring Version 4.3.7, Spring Security Version 4.2.2, Maven Version 3.5.1.
