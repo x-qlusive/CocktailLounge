@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<div th:replace="~{includes/bootstrapMeta :: bootstrapMeta}" />
+<title>Cocktail Lounge</title>
+<div th:replace="~{includes/bootstrapCSS :: bootstrapCSS}" />
+<link
+	href="http://www.malot.fr/bootstrap-datetimepicker/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css"
+	rel="stylesheet">
+	<link
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css"
+	rel="stylesheet">
+<link href="BS/css/star-rating.css" media="all" rel="stylesheet"
+	type="text/css" />
+
+<!-- optionally if you need to use a theme, then include the theme file as mentioned below -->
+<link href="BS/themes/theme.css" media="all" rel="stylesheet"
+	type="text/css" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="BS/js/star-rating.js" type="text/javascript"></script>
+
+<!-- optionally if you need to use a theme, then include the theme file as mentioned below -->
+<script src="BS/themes/theme.js"></script>
+<meta charset = "utf-8">
+<meta name = "viewport" content = "width=device-width, initial-scale=1">
+<link href="BS/css/comment.css" rel="stylesheet" type="text/css"/>
+<link rel = "stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<nav th:replace="~{includes/searchNav}"></nav>
+	<div class="brand">Cocktail Lounge</div>
+	<div class="address-bar">Carina Coelestin | Nikolaus Hribernig |
+		Patrick Plank</div>
+
+
+	<div>
+		<nav th:replace="~{includes/navigation}"></nav>
+	</div>
+	<!--  End of container -->
+	<legend>Show Cocktail</legend>
+
+		<!-- --------------  Name ---------------- -->
+		<div class="form-group">
+			<label for="inputName" class="col-md-2 control-label">Name</label>
+			<div class="col-md-10">
+				<td th:text="${cocktail.name}"></td>
+			</div>
+		</div>
+
+		<!-- --------------  Zutaten ---------------- -->
+
+		<div class="form-group">
+			<label for="inputAlc" class="col-md-2 control-label">Zutaten</label>
+			<div class="col-md-10">
+				<td th:text="${cocktail.stringIngredients}"></td>
+			</div>
+		</div>
+
+		<!-- --------------  Type ---------------- -->
+		<div class="form-group">
+			<label for="inputType" class="col-md-2 control-label">Type</label>
+			<div class="col-md-10">
+				<td th:text="${cocktail.type.name}"></td>
+			</div>
+		</div>
+
+		<!-- --------------  Alcoholgehalt ---------------- -->
+		<div class="form-group">
+			<label for="inputAlc" class="col-md-2 control-label">Alcohol
+				in %</label>
+			<div class="col-md-10">
+				<td th:text="${cocktail.alc}"></td>
+			</div>
+		</div>
+	<div th:replace="~{includes/bootstrapJS :: bootstrapJS}" />
+	
+	<span sec:authorize="hasRole('USER')">
+							<td><label for="inputRating" class="control-label">Rate
+									This</label> <input id="inputRating" name="rating" class="rating rating-loading" data-show-clear="false" data-show-caption="true"></td>
+							</span>
+
+	<!-- JS for Datetime picker -->
+	<div class="container">
+
+<h1>COMMENT BOX</h1>
+<!-------Wrap------------>
+<div id="wrap">
+<div id="main">
+<div class="row">
+<div class="col-md-5">
+<h3 class="heading">Comments and Responses</h3>
+</div>
+<div class="col-md-7">
+<div id="upper_blank"></div>
+</div>
+</div>
+</div>
+
+<p>Your email address will not be published. Required fields are marked *</p>
+
+<!------------Form Start---------->
+
+<div id='form'>
+<div class="row">
+<div class="col-md-12">
+
+<form action="" method="POST" id="commentform">
+
+<div id="comment-url" class="form-row">
+<input type = "text" placeholder = "Website" name = "url"  id = "url" >
+</div>
+<div id="comment-message" class="form-row">
+<textarea name = "comment" placeholder = "Message" id = "comment" ></textarea>
+</div>
+<a href="#"><input type="submit" name="dsubmit" id="commentSubmit" value="Submit Comment"></a>
+</form>
+
+</div>
+</div>
+</div>
+</div>
+
+</body>
+</html>

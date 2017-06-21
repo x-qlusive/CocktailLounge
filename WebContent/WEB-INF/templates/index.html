@@ -97,10 +97,15 @@
 							<th>Type</th>
 							<th>Alcohol in %</th>
 							<!-- 	<th>Main Ingredient</th> -->
+							<span sec:authorize="hasRole('ADMIN')">
+							<th>Delete</th>
+							</span>
+							<th>Show</th>
 							<span sec:authorize="hasRole('USER')">
-							<th>Action</th>
+							<th>Edit</th>
 							<th>Rating</th>
 							</span>
+							<th>Average Rating</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -116,6 +121,7 @@
 							<span sec:authorize="hasRole('ADMIN')">
 								<td><a th:href="@{/delete(id=${cocktail.id})}">Delete</a></td>
 							</span>
+							<td><a th:href="@{/showCocktail(id=${cocktail.id})}">Show</a></td>
 							<span sec:authorize="hasRole('USER')">
 								<td><a th:href="@{/addCocktail(id=${cocktail.id})}">Edit</a></td>
 							</span>
@@ -123,6 +129,7 @@
 							<td><label for="inputRating" class="control-label">Rate
 									This</label> <input id="inputRating" name="rating" class="rating rating-loading" data-show-clear="false" data-show-caption="true"></td>
 							</span>
+							<td th:text="${cocktail.getAvgCalc()}"></td>
 						</tr>
 						<!--  list all items ----------------------------------------------------------- -->
 					</tbody>
@@ -176,6 +183,9 @@
 	</div>
 	<!--  End of container -->
 	<div th:replace="~{includes/bootstrapJS :: bootstrapJS}" />
+	<script>$("#inputRating").rating().on("rating.change", function(event, value, caption) {
+		cocktail.setRating(rating);
+	});</script>
 
 </body>
 </html>

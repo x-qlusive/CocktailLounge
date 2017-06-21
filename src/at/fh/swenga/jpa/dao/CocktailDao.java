@@ -38,6 +38,10 @@ public class CocktailDao {
 	public CocktailModel getCocktail(int i) throws DataAccessException {
 		return entityManager.find(CocktailModel.class, i);
 	}
+	
+	public CocktailModel getCocktailById(int i) throws DataAccessException {
+		return entityManager.find(CocktailModel.class, i);
+	}
  
 	public void persist(CocktailModel cocktail) {
 		entityManager.persist(cocktail);

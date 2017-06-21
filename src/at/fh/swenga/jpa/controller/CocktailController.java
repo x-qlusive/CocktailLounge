@@ -2,6 +2,7 @@ package at.fh.swenga.jpa.controller;
  
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +75,12 @@ public class CocktailController {
 		}
  
 		return "forward:/list";
+	}
+	
+	@RequestMapping("/showCocktail")
+	public String showCocktail(Model model, @RequestParam int id){
+		model.addAttribute("cocktail", cocktailDao.getCocktailById(id));
+		return "showCocktail";
 	}
  
 	@RequestMapping("/fillCocktailList")
