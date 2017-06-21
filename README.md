@@ -17,10 +17,10 @@ Content of the GitHub Repository:
 In this assignment, we are asked to build a Website which helps entering data for different cocktail recipes and share the ideas with other user.
 
 The application consists of different screens which make it easy to input the data.
-Each screen contains means to input data in the most comfortable way, that is the user should not have to type information which could already be prefilled.
+Each screen contains means to input data in the most comfortable way, that the user should not have to type information which could already be prefilled.
 For example, there is a widget for entering the date of birth.
 
-We are using the official <a href="http://www.graz.at/cms/dokumente/10024916/e05a999a/Meldezettel.pdf">"Meldezettel"</a> as the definition of the app.
+
 
 ## Content of the GitHub Repository
 Files for the final version; they should be tagged with an adequate name like "final version", "last final version","new final version" :-) ,.... otherwise we take the last commit of the master branch
