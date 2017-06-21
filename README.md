@@ -21,7 +21,7 @@ Each screen contains means to input data in the most comfortable way, that the u
 For example, there is a widget for entering the date of birth.
 
 
-
+lk
 ## Content of the GitHub Repository
 Files for the final version; they should be tagged with an adequate name like "final version", "last final version","new final version" :-) ,.... otherwise we take the last commit of the master branch
 Installation instructions (README.md) with all vital information for the setup. (Very important !!!)
