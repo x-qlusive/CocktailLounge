@@ -16,22 +16,28 @@ import javax.persistence.Version;
 @Entity
 public class Type {
  
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private int id;
  
 	private String name;
  
-	@OneToMany(mappedBy="type",fetch=FetchType.LAZY)
-	@OrderBy("name, alc")
+	
     private Set<CocktailModel> cocktails;
  
-	@Version
-	long version;
+
  
- 
-    public Type() {
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Type() {
 		// TODO Auto-generated constructor stub
     }
  
@@ -48,6 +54,8 @@ public class Type {
 		this.name = name;
 	}
  
+	@OneToMany(mappedBy="type",fetch=FetchType.EAGER)
+	@OrderBy("name, alc")
 	public Set<CocktailModel> getCocktails() {
 		return cocktails;
 	}

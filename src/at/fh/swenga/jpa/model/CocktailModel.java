@@ -1,7 +1,10 @@
 package at.fh.swenga.jpa.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -20,18 +24,14 @@ import javax.persistence.Version;
 @Table(name = "Cocktail")
 public class CocktailModel implements java.io.Serializable {
 
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(nullable = false, length = 30)
 	private String name;
 
-	@Column(nullable = false, length = 30)
+
 	private Float alc;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+
 	Type type;
 	/*
 	 * @JoinTable( name="EMP_PROJ", joinColumns={
@@ -40,18 +40,18 @@ public class CocktailModel implements java.io.Serializable {
 	 * inverseJoinColumns={@JoinColumn(name="PROJ_ID",
 	 * referencedColumnName="ID")})
 	 */
-	@ManyToMany(cascade = CascadeType.PERSIST)
-	private List<Ingredient> ingredients;
 
-	@ElementCollection(targetClass = Float.class, fetch=FetchType.EAGER)
+	private List<Ingredient> ingredients;
+	
+	
+	private Set<Comment> comments = new HashSet<Comment>(0);
+
+	
 	private List<Float> rating;
 
 	private float avgRating;
 	
 	private String stringIngredients;
-
-	@Version
-	long version;
 
 	public CocktailModel() {
 	}
@@ -62,6 +62,7 @@ public class CocktailModel implements java.io.Serializable {
 		this.alc = alc;
 	}
 
+	@Column(nullable = false, length = 30)
 	public String getName() {
 		return name;
 	}
@@ -70,6 +71,7 @@ public class CocktailModel implements java.io.Serializable {
 		this.name = name;
 	}
 
+	@Column(nullable = false, length = 30)
 	public Float getAlc() {
 		return alc;
 	}
@@ -78,6 +80,9 @@ public class CocktailModel implements java.io.Serializable {
 		this.alc = alc;
 	}
 
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getId() {
 		return id;
 	}
@@ -85,7 +90,7 @@ public class CocktailModel implements java.io.Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	public Type getType() {
 		return type;
 	}
@@ -94,6 +99,7 @@ public class CocktailModel implements java.io.Serializable {
 		this.type = type;
 	}
 
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	public List<Ingredient> getIngredients() {
 		return ingredients;
 	}
@@ -108,7 +114,12 @@ public class CocktailModel implements java.io.Serializable {
 		}
 		ingredients.add(ingredient);
 	}
+	
+	public void addRating(Float rating){
+		this.rating.add(rating);
+	}
 
+	@ElementCollection(targetClass = Float.class, fetch=FetchType.EAGER)
 	public List<Float> getRating() {
 		return rating;
 	}
@@ -116,10 +127,27 @@ public class CocktailModel implements java.io.Serializable {
 	public void setRating(Float newRating) {
 		rating.add(newRating);
 	}
+	
 
-	public float getAvgCalc() {
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="belongsTo")	
+	public Set<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
+	
+	public void addComment(Comment comment){
+		comments.add(comment);
+	}
+
+
+	public float getAvgRating() {
 		if (rating.size() == 0) {
-			return 0;
+			Random generator = new Random();
+			return (generator.nextFloat()*5);
+			
 		} else {
 			float sum = 0;
 			for (int i = 0; i < rating.size(); i++) {
@@ -128,10 +156,6 @@ public class CocktailModel implements java.io.Serializable {
 			this.avgRating = (sum / rating.size());
 			return this.avgRating;
 		}
-	}
-
-	public float getAvgRating() {
-		return avgRating;
 	}
 
 	public void setAvgRating(float avgRating) {

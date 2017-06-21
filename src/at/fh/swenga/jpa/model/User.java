@@ -3,10 +3,12 @@ package at.fh.swenga.jpa.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,6 +21,8 @@ public class User implements java.io.Serializable {
 	private String password;
 	private boolean enabled;
 	private Set<UserRole> userRole = new HashSet<UserRole>(0);
+	
+	private Set<Comment> userComments = new HashSet<Comment>(0);
 
 	public User() {
 	}
@@ -46,7 +50,7 @@ public class User implements java.io.Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
+	
 	@Column(name = "password", nullable = false, length = 60)
 	public String getPassword() {
 		return password;
@@ -64,11 +68,26 @@ public class User implements java.io.Serializable {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
+	
+	public void addComment(Comment comment){
+		this.userComments.add(comment);
+	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	@OneToMany(mappedBy="commentOwner", fetch=FetchType.EAGER)
+	public Set<Comment> getUserComments() {
+		return userComments;
+	}
+
+	public void setUserComments(Set<Comment> userComments) {
+		this.userComments = userComments;
+	}
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
 	public Set<UserRole> getUserRole() {
 		return userRole;
 	}
+	
+	
 
 	public void setUserRole(Set<UserRole> userRole) {
 		this.userRole = userRole;

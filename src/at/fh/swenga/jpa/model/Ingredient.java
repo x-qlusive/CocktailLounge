@@ -11,13 +11,12 @@ import javax.persistence.ManyToMany;
  
 @Entity
 public class Ingredient {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	private int id;
  
 	private String name;
  
-	@ManyToMany(mappedBy = "ingredients",fetch=FetchType.LAZY)
+	
 	private List<CocktailModel> cocktails;
  
 	public Ingredient() {
@@ -35,13 +34,22 @@ public class Ingredient {
 	public void setName(String name) {
 		this.name = name;
 	}
- 
+	@ManyToMany(mappedBy = "ingredients",fetch=FetchType.EAGER)
 	public List<CocktailModel> getCocktails() {
 		return cocktails;
 	}
  
 	public void setCocktails(List<CocktailModel> cocktails) {
 		this.cocktails = cocktails;
+	}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
  
 }
