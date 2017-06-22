@@ -6,11 +6,37 @@ Content of the GitHub Repository:
 ## Table of content
 
 1. [Content of the GitHub Repository](content)
-2. [About](about)
-3. [Prerequisites](#prerequisites)
-4. [Getting Started](#getting-started)
-5. [Releases](#releases)
-6. [Contributors](contributors)
+2. [Work Load Distribution](distribution)
+3. [About](about)
+4. [Setup Instructions](setup)
+4. [Prerequisites](#prerequisites)
+5. [Getting Started](#getting-started)
+6. [Releases](#releases)
+7. [Contributors](contributors)
+
+## Work Load Distribution  
+
+**Carina Cölestin:**   
+
+* Design  
+* Documentation  
+* Implementation Template  
+* HTML   
+
+**Nikolaus Hribernig:**  
+  
+* Database  
+* DAOs 
+* Add Cocktail
+* Control  
+* Security  
+
+**Patrick Plank:**  
+  
+* DAOs  
+* Controller  
+* Models  
+* Dependencies  
 
 
 ## Content of the GitHub Repository
@@ -72,6 +98,18 @@ Our Data model includes the following relationships:
 * Cocktail - Comment  
 * Cocktail - Rating  
 
+## Setup Instructions
+
+1. You can fork our project on GitHub and open it in your prefered IDE.  
+<a href="https://https://github.com/x-qlusive/CocktailLounge">https://https://github.com/x-qlusive/CocktailLounge</a>
+
+2. The other way is to open eclipse and and import the project direct from the GitHub Repository.
+
+After importing the project you need to adapt the db.properties in /src fitting your database location. 
+
+If you do not use MySQL you need to change hibernate.dialect in the dispatcher-servlet.xml according to your used database. 
+
+Set up a Apache Tomcat 8.0 Server and start project. 
 
 
 ## Prerequisites
