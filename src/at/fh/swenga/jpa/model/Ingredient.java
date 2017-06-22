@@ -16,8 +16,6 @@ public class Ingredient {
  
 	private String name;
  
-	
-	private List<CocktailModel> cocktails;
  
 	public Ingredient() {
 	}
@@ -34,14 +32,7 @@ public class Ingredient {
 	public void setName(String name) {
 		this.name = name;
 	}
-	@ManyToMany(mappedBy = "ingredients",fetch=FetchType.EAGER)
-	public List<CocktailModel> getCocktails() {
-		return cocktails;
-	}
- 
-	public void setCocktails(List<CocktailModel> cocktails) {
-		this.cocktails = cocktails;
-	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getId() {

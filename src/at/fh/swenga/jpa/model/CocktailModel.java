@@ -41,25 +41,24 @@ public class CocktailModel implements java.io.Serializable {
 	 * referencedColumnName="ID")})
 	 */
 
-	private List<Ingredient> ingredients;
+	private String ingredients;
 	
 	
 	private Set<Comment> comments = new HashSet<Comment>(0);
 
 	
-	private List<Float> rating;
+	private ArrayList<Float> rating;
 
 	private float avgRating;
 	
-	private String stringIngredients;
-
 	public CocktailModel() {
 	}
 
-	public CocktailModel(String name, Float alc) {
+	public CocktailModel(String name, Float alc, String ingredients) {
 		super();
 		this.name = name;
 		this.alc = alc;
+		this.ingredients = ingredients;
 	}
 
 	@Column(nullable = false, length = 30)
@@ -99,28 +98,23 @@ public class CocktailModel implements java.io.Serializable {
 		this.type = type;
 	}
 
-	@ManyToMany(cascade = CascadeType.PERSIST)
-	public List<Ingredient> getIngredients() {
+	@Column(nullable = false, length = 60)
+	public String getIngredients() {
 		return ingredients;
 	}
 
-	public void setIngredients(List<Ingredient> ingredients) {
+	public void setIngredients(String ingredients) {
 		this.ingredients = ingredients;
 	}
 
-	public void addIngredient(Ingredient ingredient) {
-		if (ingredients == null) {
-			ingredients = new ArrayList<Ingredient>();
-		}
-		ingredients.add(ingredient);
-	}
-	
 	public void addRating(Float rating){
+		if(this.rating == null){
+			this.rating = new ArrayList<Float>();
+		}
 		this.rating.add(rating);
 	}
 
-	@ElementCollection(targetClass = Float.class, fetch=FetchType.EAGER)
-	public List<Float> getRating() {
+	public ArrayList<Float> getRating() {
 		return rating;
 	}
 
@@ -141,10 +135,10 @@ public class CocktailModel implements java.io.Serializable {
 	public void addComment(Comment comment){
 		comments.add(comment);
 	}
-
-
-	public float getAvgRating() {
-		if (rating.size() == 0) {
+	
+	public float calcAvgRating()
+	{
+		if (rating == null) {
 			Random generator = new Random();
 			return (generator.nextFloat()*5);
 			
@@ -156,24 +150,19 @@ public class CocktailModel implements java.io.Serializable {
 			this.avgRating = (sum / rating.size());
 			return this.avgRating;
 		}
+		
+	}
+	public float getAvgRating() {
+		return this.avgRating;
 	}
 
 	public void setAvgRating(float avgRating) {
 		this.avgRating = avgRating;
 	}
 
-	public String getStringIngredients() {
-		return stringIngredients;
-	}
-
-	public void setStringIngredients(String stringIngredients) {
-		this.stringIngredients = stringIngredients;
-	}
-
-	public void setRating(List<Float> rating) {
+	public void setRating(ArrayList<Float> rating) {
 		this.rating = rating;
 	}
-	
-	
+
 
 }
