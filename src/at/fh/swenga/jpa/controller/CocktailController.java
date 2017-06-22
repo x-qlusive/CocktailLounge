@@ -125,29 +125,23 @@ public class CocktailController {
 		if (typeCT==null) typeCT = new Type("Cocktail");	
  
   
-		CocktailModel p1 = new CocktailModel("B52", (float) 25.0, "Stroh 80, Kahlua, Labinot");
+		CocktailModel p1 = new CocktailModel("B52", (float) 25.0, "Stroh 80, Kahlua, Labinot"," ");
 		p1.setType(typeST);
  
+ 		cocktailDao.persist(p1);
  
-		cocktailDao.persist(p1);
- 
-		CocktailModel p2 = new CocktailModel("Mochito", (float) 25.0, "Minze, Wasser, Liebe");
+		CocktailModel p2 = new CocktailModel("Mochito", (float) 25.0, "Minze, Wasser, Liebe"," ");
 		p2.setType(typeCT);
- 
-
- 
- 
+   
 		cocktailDao.persist(p2);
  
-		CocktailModel p3 = new CocktailModel("Caipirinha",(float) 25.0, "viel Schnaps");
+		CocktailModel p3 = new CocktailModel("Caipirinha",(float) 25.0, "viel Schnaps"," ");
 		p3.setType(typeCT);
 
 		cocktailDao.persist(p3);
 		
-		CocktailModel p4 = new CocktailModel("Captain Cola",(float) 25.0, "Captain, Cola");
+		CocktailModel p4 = new CocktailModel("Captain Cola",(float) 25.0, "Captain, Cola"," ");
 		p4.setType(typeLD);
- 
-
  
 		cocktailDao.persist(p4);
  

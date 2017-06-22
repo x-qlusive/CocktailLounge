@@ -85,6 +85,14 @@
 				<td th:text="${cocktail.alc}"></td>
 			</div>
 		</div>
+		
+				<!-- --------------  Rezept ---------------- -->
+		<div class="form-group">
+			<label for="inputRecipie" class="col-md-2 control-label">Rezept</label>
+			<div class="col-md-10">
+				<td th:text="${cocktail.recipie}"></td>
+			</div>
+		</div>
 		<div th:replace="~{includes/bootstrapJS :: bootstrapJS}" />
 
 		<span sec:authorize="hasRole('USER')">

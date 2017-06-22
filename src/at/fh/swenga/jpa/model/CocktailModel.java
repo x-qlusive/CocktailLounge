@@ -30,6 +30,8 @@ public class CocktailModel implements java.io.Serializable {
 
 
 	private Float alc;
+	
+	private String recipie;
 
 
 	Type type;
@@ -54,11 +56,12 @@ public class CocktailModel implements java.io.Serializable {
 	public CocktailModel() {
 	}
 
-	public CocktailModel(String name, Float alc, String ingredients) {
+	public CocktailModel(String name, Float alc, String ingredients, String recipie) {
 		super();
 		this.name = name;
 		this.alc = alc;
 		this.ingredients = ingredients;
+		this.recipie = recipie;
 	}
 
 	@Column(nullable = false, length = 30)
@@ -107,6 +110,14 @@ public class CocktailModel implements java.io.Serializable {
 		this.ingredients = ingredients;
 	}
 
+	@Column(nullable = false, length = 60)
+	public String getRecipie() {
+		return recipie;
+	}
+
+	public void setRecipie(String recipie) {
+		this.recipie = recipie;
+	}
 	public void addRating(Float rating){
 		if(this.rating == null){
 			this.rating = new ArrayList<Float>();
