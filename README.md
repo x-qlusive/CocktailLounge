@@ -5,20 +5,13 @@ Content of the GitHub Repository:
 
 ## Table of content
 
-1. [About](#about)
-2. [Content of the GitHub Repository](content)
+1. [Content of the GitHub Repository](content)
+2. [About](about)
 3. [Prerequisites](#prerequisites)
 4. [Getting Started](#getting-started)
 5. [Releases](#releases)
-6. [License](license)
-7. [Contributors](contributors)
-aegf..
-## About
-In this assignment, we are asked to build a Website which helps entering data for different cocktail recipes and share the ideas with other user.
+6. [Contributors](contributors)
 
-The application consists of different screens which make it easy to input the data.
-Each screen contains means to input data in the most comfortable way, that the user should not have to type information which could already be prefilled.
-For example, there is a widget for entering the date of birth.
 
 ## Content of the GitHub Repository
 Files for the final version; they should be tagged with an adequate name like "final version", "last final version","new final version" :-) ,.... otherwise we take the last commit of the master branch
@@ -43,6 +36,44 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 You can upload this file as part of a commit/push or you can create it online in GitHub.
 
 
+## About
+Cocktail Lounge should support hobby barkeepers and professionals to share their own creations of drinks and
+have an insight to classical recipes to improve their knowledge about drink-mixing. There should be a
+Guestbook/Message board where registered users can communicate with each other. The user should be able
+to create an account. Unregistered users should be able to search / view recipes. Registered users should have
+the same features and additional can create new recipes, rate recipes and comment on recipes. There should
+also be an administrative account which should be able to delete recipes/comments.
+
+* Planning Phase  
+	> Project proposal  
+	> User Requirements Specification  
+	> Planning database structure  
+	> Choosing a bootstrap design    
+ 
+ 
+* Development Phase  
+	> Implementing the database  
+	> Developing the website design  
+	> Implementing the Account structure  
+	> Implementing of different security features (hiding of id’s in browser tab etc.)
+
+
+* Testing Phase  
+	> Filling the database with objects  
+	> Testing of the different features (rating, commenting)  
+   
+   
+* Presenting Phase  
+	> Presenting of the Webpage with the complete features set  
+
+
+Our Data model includes the following relationships:  
+* Cocktail - User  
+* Cocktail - Comment  
+* Cocktail - Rating  
+
+
+
 ## Prerequisites
 To create our Website we worked with Thymeleaf Version 3.0.3, Spring Version 4.3.7, Spring Security Version 4.2.2, Maven Version 3.5.1.
 xcfx
@@ -50,17 +81,14 @@ xcfx
 
 ## Getting Started
 
-The first step was to think about the idea to create a Website which makes it possible for users to inscribe it's personal creations of cocktails in the easiest way and to store it in a database.
-Primarily we established a concept which includes contents like design, functionality, task distribution, and other technical details or project management questions.
-Afterwards we talked about the most important tasks (preparing the Views, implementing the database etc.) and the time management. Furthermore we have to use gitHubthe, which
-makes it easier for all team members to interact with each other.
+The first step was to think about the idea to create a Website which makes it possible for users to inscribe it's personal creations of cocktails in the easiest way and to store it in a database. Primarily we established a concept which includes contents like design, functionality, task distribution, and other technical details or project management questions. Afterwards we talked about the most important tasks and the time management. Furthermore we have to use gitHub, which
+makes it easier for all team members to interact with each other.  
 
 
 ## Releases
 The final due was on June 22nd, 2017
 
-## License
-Read <a href="license.md">license.md</a> for more information.
+
 ## Contributors
 
 This project was created by
