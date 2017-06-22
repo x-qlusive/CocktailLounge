@@ -63,7 +63,7 @@
 		<div class="form-group">
 			<label for="inputAlc" class="col-md-2 control-label">Zutaten</label>
 			<div class="col-md-10">
-				<td th:text="${cocktail.stringIngredients}"></td>
+				<td th:text="${cocktail.ingredients}"></td>
 			</div>
 		</div>
 		<span sec:authorize="hasRole('USER')">
@@ -91,7 +91,7 @@
 			<td><label for="inputRating" class="control-label">Rate
 					This</label> <input id="inputRating" name="rating"
 				class="rating rating-loading" data-show-clear="false"
-				data-show-caption="true"><a th:href="@{/showCocktail(id=${cocktail.id}, rating=${rating})}">Submit rating</a></td>
+				data-show-caption="true"><!-- <a th:href="@{/showCocktail(id=${cocktail.id}, rating=${rating})}">Submit rating</a> --></td>
 		</span>
 
 		<!-- JS for Datetime picker -->
@@ -139,5 +139,11 @@
 			<input type="hidden" th:name="${_csrf.parameterName}"
 				th:value="${_csrf.token}" />
 	</form>
+		<script>
+		$("#inputRating").rating().on("rating.change",
+				function(event, value, caption) {
+					cocktail.setRating(rating);
+				});
+	</script>
 </body>
 </html>

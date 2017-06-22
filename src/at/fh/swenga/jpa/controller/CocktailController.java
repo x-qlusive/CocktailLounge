@@ -43,19 +43,15 @@ public class CocktailController {
 	@Autowired
 	CommentDao commentDao;
 	
-	@Autowired
-	IngredientDao ingredientDao;
 	
 	@RequestMapping(value = { "/", "list" })
 	public String index(Model model) {
  
 		List<CocktailModel> cocktails = cocktailDao.getCocktails();
 		List<Type> types = typeDao.getTypes();
-		List<Ingredient> ingredients = ingredientDao.getIngredients();
  
 		model.addAttribute("cocktails", cocktails);
 		model.addAttribute("types", types);
-		model.addAttribute("ingredients",ingredients);
 		return "index";
 	}
 	
@@ -89,10 +85,10 @@ public class CocktailController {
 	}
 	
 	@RequestMapping(value = "/showCocktail", method = RequestMethod.POST)
-	public String addComment(@Valid @ModelAttribute Comment newComment, Model model, @RequestParam int id, HttpServletRequest request, @RequestParam float rating){
-		if(rating!=0){
+	public String addComment(@Valid @ModelAttribute Comment newComment, Model model, @RequestParam int id, HttpServletRequest request){//, @RequestParam float rating){
+		/*if(rating!=0){
 			cocktailDao.getCocktailById(id).addRating(rating);
-		}
+		}*/
 		if(request.isUserInRole("USER")){
 			newComment.setCommentOwner(userDao.findByUsername(request.getRemoteUser()).get(0));
 			newComment.setBelongsTo(cocktailDao.getCocktailById(id));
@@ -128,53 +124,30 @@ public class CocktailController {
 		Type typeCT = typeDao.getType("Cocktail");
 		if (typeCT==null) typeCT = new Type("Cocktail");	
  
- 
-		Ingredient ingredient1= ingredientDao.getIngredient("Kahlua");
-		if (ingredient1== null) ingredient1=new Ingredient("Kahlua");
- 
-		Ingredient ingredient2= ingredientDao.getIngredient("Sparkling Water");
-		if (ingredient2== null) ingredient2=new Ingredient("Sparkling Water");
- 
-		Ingredient ingredient3= ingredientDao.getIngredient("Cola");
-		if (ingredient3== null) ingredient3=new Ingredient("Cola");
- 
-		Ingredient ingredient4= ingredientDao.getIngredient("Rum");
-		if (ingredient4== null) ingredient4=new Ingredient("Rum");
   
-		CocktailModel p1 = new CocktailModel("B52", (float) 25.0);
+		CocktailModel p1 = new CocktailModel("B52", (float) 25.0, "Stroh 80, Kahlua, Labinot");
 		p1.setType(typeST);
  
-		p1.addIngredient(ingredient1);
-		p1.addIngredient(ingredient4);
-
  
 		cocktailDao.persist(p1);
  
-		CocktailModel p2 = new CocktailModel("Mochito", (float) 25.0);
+		CocktailModel p2 = new CocktailModel("Mochito", (float) 25.0, "Minze, Wasser, Liebe");
 		p2.setType(typeCT);
  
-		p2.addIngredient(ingredient4);
-		p2.addIngredient(ingredient2);
 
  
  
 		cocktailDao.persist(p2);
  
-		CocktailModel p3 = new CocktailModel("Caipirinha",(float) 25.0);
+		CocktailModel p3 = new CocktailModel("Caipirinha",(float) 25.0, "viel Schnaps");
 		p3.setType(typeCT);
- 
-		p3.addIngredient(ingredient2);
-		p3.addIngredient(ingredient4);
- 
- 
+
 		cocktailDao.persist(p3);
 		
-		CocktailModel p4 = new CocktailModel("Captain Cola",(float) 25.0);
+		CocktailModel p4 = new CocktailModel("Captain Cola",(float) 25.0, "Captain, Cola");
 		p4.setType(typeLD);
  
-		p4.addIngredient(ingredient3);
-		p4.addIngredient(ingredient4);
- 
+
  
 		cocktailDao.persist(p4);
  
@@ -191,9 +164,20 @@ public class CocktailController {
 	public String search(Model model, @RequestParam String searchString) {
 		model.addAttribute("cocktails", cocktailDao.searchCocktails(searchString));
 		model.addAttribute("types", typeDao.getTypes());
-		model.addAttribute("ingredients",ingredientDao.getIngredients());
 
 		return "index";
+	}
+	
+	@RequestMapping("/com")
+	public String showCocktailOfTheMonth(Model model)
+	{
+		return "com";
+	}
+	
+	@RequestMapping("/contact")
+	public String showContactDetails(Model model)
+	{
+		return "contact";
 	}
  
 	@RequestMapping("/delete")

@@ -90,7 +90,7 @@
 							<th>Name</th>
 							<th>Type</th>
 							<th>Alcohol in %</th>
-							<!-- 	<th>Main Ingredient</th> -->
+							<th>Ingredients</th>
 							<span sec:authorize="hasRole('ADMIN')">
 								<th>Delete</th>
 							</span>
@@ -108,6 +108,7 @@
 							<td th:text="${cocktail.name}"></td>
 							<td th:text="${cocktail.type.name}"></td>
 							<td th:text="${cocktail.alc}"></td>
+							<td th:text="${cocktail.ingredients}"></td>
 							<!-- 		<td th:text="${cocktail.ingredients[0].name}"></td> -->
 							<!-- 		<td th:each="ingredient:${cocktail.ingredients}"><a href="#" th:text="${ingredient.name}"></a> -->
 							<!--     <td th:text="${#lists.size(cocktail.ingredients)}"></td> -->
@@ -118,7 +119,7 @@
 							<span sec:authorize="hasRole('USER')">
 								<td><a th:href="@{/addCocktail(id=${cocktail.id})}">Edit</a></td>
 							</span>
-							<td th:text="${cocktail.getAvgRating()}"></td>
+							<td th:text="${cocktail.calcAvgRating()}"></td>
 						</tr>
 						<!--  list all items ----------------------------------------------------------- -->
 					</tbody>
@@ -166,12 +167,7 @@
 	</div>
 	<!--  End of container -->
 	<div th:replace="~{includes/bootstrapJS :: bootstrapJS}" />
-	<script>
-		$("#inputRating").rating().on("rating.change",
-				function(event, value, caption) {
-					cocktail.setRating(rating);
-				});
-	</script>
+
 
 </body>
 </html>
