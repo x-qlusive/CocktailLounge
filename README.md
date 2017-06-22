@@ -21,7 +21,8 @@ Content of the GitHub Repository:
 * Design  
 * Documentation  
 * Implementation Template  
-* HTML   
+* HTML
+* Testing
 
 **Nikolaus Hribernig:**  
   
@@ -37,6 +38,7 @@ Content of the GitHub Repository:
 * Controller  
 * Models  
 * Dependencies  
+* Testing
 
 
 ## Content of the GitHub Repository
