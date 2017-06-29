@@ -112,7 +112,16 @@ public class CocktailModel implements java.io.Serializable {
 
 	@Column(nullable = false, length = 60)
 	public String getRecipie() {
+		checkRecipie();
 		return recipie;
+	}
+	
+	private void checkRecipie(){
+		if (this.recipie== null)
+		{
+			this.recipie = "";
+		}
+		return;
 	}
 
 	public void setRecipie(String recipie) {
