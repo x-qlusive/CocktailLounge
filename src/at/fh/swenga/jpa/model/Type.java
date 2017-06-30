@@ -55,7 +55,7 @@ public class Type {
 	}
  
 	@OneToMany(mappedBy="type",fetch=FetchType.EAGER)
-	@OrderBy("name, alc")
+	@OrderBy("name")
 	public Set<CocktailModel> getCocktails() {
 		return cocktails;
 	}

@@ -18,3 +18,18 @@ VALUES ('john','$2a$10$2BZh7qw/FSh23ZCbojA.OOoo7vzg7KaqHUp34l8/i9.ktxzcr3vJm', T
 
 INSERT INTO user_roles (username, ROLE)
 VALUES ('john', 'ROLE_JOHNNY');
+
+INSERT INTO users(username,password,enabled)
+VALUES ('Blauensteiner','$2a$10$2BZh7qw/FSh23ZCbojA.OOoo7vzg7KaqHUp34l8/i9.ktxzcr3vJm', TRUE);
+
+INSERT INTO user_roles (username, ROLE)
+VALUES ('Blauensteiner', 'ROLE_USER');
+
+INSERT INTO user_roles (username, ROLE)
+VALUES ('Blauensteiner', 'ROLE_ADMIN');
+
+INSERT INTO users(username,password,enabled)
+VALUES ('zupan','$2a$10$2BZh7qw/FSh23ZCbojA.OOoo7vzg7KaqHUp34l8/i9.ktxzcr3vJm', TRUE);
+
+INSERT INTO user_roles (username, ROLE)
+VALUES ('zupan', 'ROLE_USER')
